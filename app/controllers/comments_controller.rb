@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.save
-    redirect_to articles_path(@comment.article)
+    redirect_to article_path(@comment.article)
   end
 
 
