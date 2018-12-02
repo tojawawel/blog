@@ -1,17 +1,3 @@
 <h2>Edit comment</h2>
 <%= render 'common/errors', model: @comment %>
-
-<%= form_for [@article, @comment] do |f| %>
-  <%= f.hidden_field :article_id %>
-  <p>
-    <%= f.label :commenter %>
-    <%= f.text_field :commenter %>
-  </p>
-  <p>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form', model: @comment %>
