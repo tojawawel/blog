@@ -8,6 +8,12 @@
     <%= simple_format(comment.body) %>
   </p>
   <p>
+    <strong>Data utworzenia:</strong>
+    <%= comment.created_at %>
+  </p>
+  </p>
+  <p>
     <%= link_to "Delete", article_comment_path(article_id: comment.article_id, id: comment.id), method: :delete, data: {confirm: "Pewniak?"} %>
+    <%= link_to 'Edit', edit_article_comment_path(article_id: comment.article.id, id: comment.id) %>
   </p>
 <% end %>
