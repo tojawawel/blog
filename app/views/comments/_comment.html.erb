@@ -7,4 +7,7 @@
     <strong>Treść:</strong>
     <%= comment.body %>
   </p>
+  <p>
+    <%= link_to "Delete", article_comment_path(article_id: comment.article_id, id: comment.id), method: :delete, data: {confirm: "Pewniak?"} %>
+  </p>
 <% end %>
