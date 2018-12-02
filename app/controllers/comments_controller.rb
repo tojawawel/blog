@@ -3,8 +3,12 @@ before_action :find_article
   def create
     @comment = Comment.new(comment_params)
     @comment.article = @article
-    @comment.save
-    redirect_to article_path(@comment.article)
+    if @comment.save
+      redirect_to article_path(@comment.article)
+    else
+      render 'articles/show'
+    end
+
   end
 
   def destroy
@@ -12,7 +16,6 @@ before_action :find_article
     @comment.destroy
     redirect_to article_path(@comment.article)
   end
-
 
   private
   def comment_params
@@ -28,8 +31,5 @@ end
 
 # @article = Article.find(params[:article_id])
 # @comment = @article.comments.new(comment_params)
-# if @comment.save
-#   redirect_to article_path(@article)
-# else
-#   render 'new'
+
 # end
