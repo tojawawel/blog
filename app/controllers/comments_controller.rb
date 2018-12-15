@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.article = @article
     if @comment.save
+      session[:commenter] = @comment.commenter
       redirect_to article_path(@comment.article)
     else
       render 'articles/show'
