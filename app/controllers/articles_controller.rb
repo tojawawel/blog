@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show,:edit,:update,:destroy]
+  
   def index
     @articles = Article.all.order(:id)
     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
