@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show,:edit,:update,:destroy]
-  
+
   def index
     @articles = Article.all.order(:id)
     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
       redirect_to article_path(@article)
     else
@@ -27,6 +28,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article.user = current_user
     if @article.update(article_params)
       redirect_to article_path(@article)
     else
