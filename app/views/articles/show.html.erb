@@ -4,6 +4,11 @@
   <div class="card-body">
     <h5 class="card-title"><%= @article.title %></h5>
     <p class="card-text"><%= @article.text %></p>
+    <p class="card-text">
+      <% @article.tags.each do |tag| %>
+        <%= link_to tag, articles_path(q: tag),class:"badge badge-pill badge-dark" %>
+     <% end %>
+    </p>
     <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-primary" %>
     <%= link_to 'Delete', article_path(@article),method: :delete, data: {confirm: "Pewniak?"}, class:"btn btn-danger" %>
   </div>
