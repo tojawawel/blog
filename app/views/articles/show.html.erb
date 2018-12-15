@@ -1,17 +1,14 @@
 <h1>My article</h1>
 
-<p>
-  <strong>Title</strong>
-  <%= @article.title %>
-</p>
-<p>
-  <strong>Text</strong>
-  <%= @article.text %>
-</p>
-
+<div class="card text">
+  <div class="card-body">
+    <h5 class="card-title"><%= @article.title %></h5>
+    <p class="card-text"><%= @article.text %></p>
+    <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-primary" %>
+    <%= link_to 'Delete', article_path(@article),method: :delete, data: {confirm: "Pewniak?"}, class:"btn btn-danger" %>
+  </div>
+</div>
+<br>
 <%= render 'comments/comment' %>
 <%= render 'comments/form' %>
-
-<%= link_to 'Back', articles_path %>
-<%= link_to 'Edit', edit_article_path(@article) %>
-<%= link_to 'Delete', article_path(@article),method: :delete, data: {confirm: "Pewniak?"} %>
+<%= link_to 'Back', articles_path, class:"btn btn-light" %>
