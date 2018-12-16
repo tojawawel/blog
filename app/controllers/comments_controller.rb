@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.article = @article
+    @comment.user = current_user
     if @comment.save
       flash[:notice] = "Created succesfully!"
-      session[:commenter] = @comment.commenter
       redirect_to article_path(@comment.article)
     else
       render 'articles/show'
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :article_id)
+    params.require(:comment).permit(:body, :article_id)
   end
 
   def find_article
