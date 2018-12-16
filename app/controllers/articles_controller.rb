@@ -26,17 +26,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless @article.user == current_user || current_user.admin?
-      flash[:alert] = "You're not able to edit this!"
-      redirect_to articles_path
-    end
+    authorize_article
   end
 
   def update
-    unless @article.user == current_user || current_user.admin?
-      flash[:notice] = "You are not allowed to be here!"
-      redirect_to article_path(@article)
-    end
+    authorize_article
     @article.user = current_user
     if @article.update(article_params)
         flash[:notice] = "Updated succesfully!"
@@ -58,6 +52,14 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def authorize_article
+    unless @article.user == current_user || current_user.admin?
+      flash[:alert] = "You're not able to edit this!"
+      redirect_to articles_path
+    end
+  end
+
   def article_params
     article_params = params.require(:article).permit(:title, :text, :tags)
   end
