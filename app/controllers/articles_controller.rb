@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show,:edit,:update,:destroy]
+  before_action :authenticate_user!, except:[:index, :show]
+  before_action :authorize_article, only:[:edit, :update, :destroy]
+
 
   def index
     @articles = Article.all.order(:id)
@@ -26,11 +29,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    authorize_article
   end
 
   def update
-    authorize_article
     @article.user = current_user
     if @article.update(article_params)
         flash[:notice] = "Updated succesfully!"
@@ -41,14 +42,9 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    unless @article.user == current_user || current_user.admin?
-      flash[:alert] = "You're not able to delete this!"
-      redirect_to articles_path
-    else
       @article.destroy
       flash[:notice] = "Destroyed succesfully!"
       redirect_to articles_path
-    end
   end
 
   private
