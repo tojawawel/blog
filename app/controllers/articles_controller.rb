@@ -33,19 +33,28 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    unless @article.user == current_user || current_user.admin?
+      flash[:notice] = "You are not allowed to be here!"
+      redirect_to article_path(@article)
+    end
     @article.user = current_user
     if @article.update(article_params)
-      flash[:notice] = "Updated succesfully!"
-      redirect_to article_path(@article)
-    else
-      render 'edit'
-    end
+        flash[:notice] = "Updated succesfully!"
+        redirect_to article_path(@article)
+      else
+        render 'edit'
+      end
   end
 
   def destroy
-    @article.destroy
-    flash[:notice] = "Destroyed succesfully!"
-    redirect_to articles_path
+    unless @article.user == current_user || current_user.admin?
+      flash[:alert] = "You're not able to delete this!"
+      redirect_to articles_path
+    else
+      @article.destroy
+      flash[:notice] = "Destroyed succesfully!"
+      redirect_to articles_path
+    end
   end
 
   private

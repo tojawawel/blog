@@ -36,7 +36,11 @@
           <%= link_to 'Edit', edit_article_path(article) %>
         <% end %>
       </td>
-      <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Pewniak?"} %></td>
+      <td>
+      <% if current_user == article.user || current_user.admin? %>
+        <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Pewniak?"} %>
+      <% end %>
+      </td>
       <td><%= article.comments.count %></td>
     </tr>
     <% end %>
