@@ -13,7 +13,7 @@
      <% end %>
     </p>
     <h2>Likes</h2>
-    <%= pluralize(@article.likes.count, "person") %> liked this article!
+    <%= pluralize(@article.likes_count, "person") %> liked this article!
     <% if @like.persisted? %>
     <i class="fa fa-thumbs-down"></i>
     <%= link_to 'Unlike', article_like_path(@article, @like), method: :delete %>

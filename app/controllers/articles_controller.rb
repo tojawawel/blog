@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
 
   def index
-    @articles = Article.all.order(:id)
+    @articles = Article.all.includes(:user).order(:id)
     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end
 
@@ -40,8 +40,8 @@ class ArticlesController < ApplicationController
           title: @article.title,
           text: @article.text,
           views_count: @article.views_count,
-          likes_count: @article.likes.count,
-          comments_count: @article.comments.count}
+          likes_count: @article.likes_count,
+          comments_count: @article.comments_count}
       end
     end
   end

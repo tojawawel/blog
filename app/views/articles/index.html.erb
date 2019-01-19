@@ -42,7 +42,7 @@
         <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Pewniak?"} %>
       <% end %>
       </td>
-      <td><%= article.comments.count %></td>
+      <td><%= article.comments_count %></td>
     </tr>
     <% end %>
   </tbody>
