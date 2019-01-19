@@ -30,6 +30,7 @@
       <td><%= article.text %></td>
       <td><%= article.tags.map { |tag| link_to tag, articles_path(q: tag) }.join(', ').html_safe %></td>
       <td><%= article.user.email %></td>
+      <td><%= link_to "Summary", article_path(article), class: 'btn btn-info summary', id: "summary-#{article.id}" %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
       <td>
         <% if current_user == article.user || current_user&.admin? %>
