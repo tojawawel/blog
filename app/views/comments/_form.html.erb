@@ -1,7 +1,7 @@
 <h2>Comments</h2>
 <%= render 'common/errors', model: @comment %>
 
-<%= form_for [@article, @comment] do |f| %>
+<%= form_for [@article, @comment], url:article_comments_path(@article, @comment) do |f| %>
   <p><%= f.hidden_field :article_id %></p>
   <div class="form-group">
     <%= f.label :body %>

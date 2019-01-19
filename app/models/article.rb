@@ -13,6 +13,10 @@ class Article < ApplicationRecord
     super(tags)
   end
 
+  def css_class
+    'normal'
+  end
+
   private
   def sanitize_tags(text)
     text.downcase.split.uniq

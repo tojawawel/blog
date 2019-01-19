@@ -4,6 +4,9 @@
   <div class="card-body">
     <h5 class="card-title"><%= @article.title %></h5>
     <p class="card-text"><%= @article.text %></p>
+    <% if sponsored_article?(@article) %>
+      <h3>Artykul sponsored by <%= @article.company.name %></h3>
+    <% end %>
     <p class="card-text">
       <% @article.tags.each do |tag| %>
         <%= link_to tag, articles_path(q: tag),class:"badge badge-pill badge-dark" %>
@@ -25,8 +28,12 @@
   </div>
 </div>
 <br>
+<% if sponsored_article?(@article) %>
+  <p>Komentarze zablokownik</p>
+<% else %>
 <%= render 'comments/comment' %>
-<% if user_signed_in? %>
-  <%= render 'comments/form' %>
+  <% if user_signed_in? %>
+    <%= render 'comments/form' %>
+  <% end %>
 <% end %>
 <%= link_to 'Back', articles_path, class:"btn btn-light" %>
