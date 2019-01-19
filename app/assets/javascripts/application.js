@@ -16,3 +16,20 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+window.addEventListener('load', function () {
+  document.getElementById('press')
+  var button = document.getElementById('press');
+    button.addEventListener('click', function () {
+      var elems = document.querySelectorAll('.card');
+      for (var i=0;i<elems.length;i+=1){
+        if (elems[i].style.display === 'flex') {
+          elems[i].style.display = 'none';
+          button.innerText = 'Pokaż'
+        } else {
+          elems[i].style.display = 'flex';
+          button.innerText = 'Schowaj'
+        }
+      }
+    })
+})
