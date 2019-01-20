@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.article = @article
     @comment.user = current_user
     @like = Like.find_or_initialize_by(article: @article, user: current_user)
-    
+
     if @comment.save
       flash[:notice] = "Created succesfully!"
       redirect_to article_path(@comment.article)
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
 
   def find_article
-    @article = Article.find(params[:article_id])
+    @article = Article.published.find(params[:article_id])
   end
 
   def find_comment

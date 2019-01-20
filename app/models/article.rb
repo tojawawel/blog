@@ -8,13 +8,19 @@ class Article < ApplicationRecord
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
 
+  scope :published, -> {where(published: true)}
+
   def tags=(tags)
     tags = sanitize_tags(tags) if tags.is_a?(String)
     super(tags)
   end
 
   def css_class
-    'normal'
+    if published?
+      'normal'
+    else
+      'unpublished'
+    end
   end
 
   private
