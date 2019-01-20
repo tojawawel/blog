@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'pry-rails'
