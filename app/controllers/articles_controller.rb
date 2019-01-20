@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.published
     end
+      @most_commented = @articles.most_commented
       @articles = @articles.includes(:user).order(:id)
       @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end

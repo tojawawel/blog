@@ -9,6 +9,7 @@ class Article < ApplicationRecord
   has_many :liked_articles, through: :likes, source: :article
 
   scope :published, -> {where(published: true)}
+  scope :most_commented, -> {order(comments_count: :desc).first}
 
   def tags=(tags)
     tags = sanitize_tags(tags) if tags.is_a?(String)
