@@ -12,6 +12,10 @@
         <%= link_to tag, articles_path(q: tag),class:"badge badge-pill badge-dark" %>
      <% end %>
     </p>
+      <p>
+        <strong>Image</strong>
+        <%= image_tag @article.image_url, alt: 'Image' if @article.image? %> 
+      </p>
     <h2>Likes</h2>
     <%= pluralize(@article.likes_count, "person") %> liked this article!
     <% if @like.persisted? %>

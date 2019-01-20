@@ -16,8 +16,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
-gem 'bootstrap4-kaminari-views'
-
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   gem 'pry-rails'
