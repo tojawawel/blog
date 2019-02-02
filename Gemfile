@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.1'
 
 gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 gem 'devise'
@@ -18,11 +18,12 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
-gem 'dotenv'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'letter_opener'
 end
 
 group :development do
