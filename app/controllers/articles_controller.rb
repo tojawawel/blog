@@ -90,6 +90,7 @@ class ArticlesController < ApplicationController
     article_params = params.require(:article).permit(:title, :text, :tags, :image)
   end
 
+
   def set_article
     @article = if current_user&.admin?
                 Article.find(params[:id])

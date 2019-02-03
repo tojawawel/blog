@@ -1,0 +1,10 @@
+<%= form_for [comment, Mark.new], url:article_comment_marks_path(article_id: comment.article_id, comment_id: comment.id) do |f| %>
+  <p><%= f.hidden_field :comment_id %></p>
+  <div class="form-group">
+    <%= f.label :mark %>
+    <%= f.collection_select :mark, [[1, '+'] ,[-1, '-']], :first, :last %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
